@@ -29,7 +29,7 @@ public class OAuth2LoginConfig {
                 .authorizationUri(Constants.AUTHORIZATION_URL)
                 .tokenUri(Constants.TOKEN_URL)
                 .userInfoUri(Constants.USER_URL)
-                .userNameAttributeName(Constants.USER_ID)
+                .userNameAttributeName(Constants.USER_NAME_ATTRIBUTE)
                 .build();
     }
 }

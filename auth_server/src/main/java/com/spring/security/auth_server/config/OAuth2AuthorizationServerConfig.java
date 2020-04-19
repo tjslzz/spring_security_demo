@@ -1,6 +1,7 @@
 package com.spring.security.auth_server.config;
 
 import com.spring.common.Constants;
+import com.spring.common.utils.UserAuthenticationConverterUtil;
 import com.spring.security.auth_server.service.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 
@@ -56,10 +58,13 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        DefaultAccessTokenConverter defaultAccessTokenConverter = new DefaultAccessTokenConverter();
+        defaultAccessTokenConverter.setUserTokenConverter(new UserAuthenticationConverterUtil());
         endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
                 .reuseRefreshTokens(false)
+                .accessTokenConverter(defaultAccessTokenConverter)
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
     }
 

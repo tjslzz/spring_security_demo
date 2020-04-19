@@ -18,7 +18,7 @@ public class Constants {
     public static final String ASSERT_MESSAGE = "非验证类型";
     public static final String INVALID_USER = "用户名/密码无效";
 
-    public static final String USER_ID = "userID";
+    public static final String USER_NAME_ATTRIBUTE = "name";
     public static final String CLIENT_ID = "CLIENT_ID";
     public static final String RESOURCE_ID = "RESOURCE_ID";
     public static final String REGISTRATION_ID = "REGISTRATION_ID";
@@ -26,7 +26,7 @@ public class Constants {
     public static final String SCOPES = "SCOPES";
     public static final String PERMIT_TOKEN = "permitAll()";
     public static final String AUTHENTICATED_TOKEN = "isAuthenticated()";
-    public static final String REDIRECT_URL = "http://client.server.com:" + CLIENT_PORT + "/login/oauth2/code/" +RESOURCE_ID;
+    public static final String REDIRECT_URL = "http://client.server.com:" + CLIENT_PORT + "/login/oauth2/code/" +REGISTRATION_ID;
     public static final String AUTHORIZATION_URL = "http://auth.server.com:"+AUTH_PORT+"/oauth/authorize";
     public static final String TOKEN_URL = "http://auth.server.com:"+AUTH_PORT+"/oauth/token";
     public static final String CHECK_TOKEN_URL = "http://auth.server.com:"+AUTH_PORT+"/oauth/check_token";

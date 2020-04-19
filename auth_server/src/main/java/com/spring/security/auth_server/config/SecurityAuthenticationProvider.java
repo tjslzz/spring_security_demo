@@ -9,16 +9,12 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class SecurityAuthenticationProvider implements AuthenticationProvider {
@@ -31,7 +27,7 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new PasswordEncoderUtil();
     }
 
@@ -40,13 +36,11 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         Assert.isInstanceOf(UsernamePasswordAuthenticationToken.class, authentication, Constants.ASSERT_MESSAGE);
         String username = authentication.getName();
-        String password = authentication.getCredentials().toString();
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        if(ObjectUtils.isEmpty(userDetails)){
+        if (ObjectUtils.isEmpty(userDetails)) {
             throw new UsernameNotFoundException(Constants.INVALID_USER);
         }
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password, authorities);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
         token.setDetails(userDetails);
         return token;
     }
