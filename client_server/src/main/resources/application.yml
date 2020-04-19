@@ -1,0 +1,19 @@
+eureka:
+  instance:
+    secure-port-enabled: false
+    hostname: client.server.com
+    instance-id: ${eureka.instance.hostname}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://jerry:jerry@127.0.0.1:8888/eureka/
+    fetch-registry: false
+
+server:
+  port: 8003
+  servlet:
+    session:
+      cookie:
+        name: CLIENT_SERVER_SESSIONID
+spring:
+  application:
+    name: jerry's client server

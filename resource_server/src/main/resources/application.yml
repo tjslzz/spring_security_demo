@@ -1,0 +1,19 @@
+eureka:
+  instance:
+    secure-port-enabled: false
+    hostname: resource.server.com
+    instance-id: ${eureka.instance.hostname}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://jerry:jerry@127.0.0.1:8888/eureka/
+    fetch-registry: false
+
+server:
+  port: 8002
+  servlet:
+    session:
+      cookie:
+        name: RESOURCE_SERVER_SESSIONID
+spring:
+  application:
+    name: jerry's resource server

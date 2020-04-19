@@ -1,0 +1,17 @@
+server:
+  port: 8888
+
+spring:
+  security:
+    user:
+      name: jerry
+      password: jerry
+
+eureka:
+  # server:
+  #    enable-self-preservation: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8888/eureka/

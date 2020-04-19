@@ -1,0 +1,22 @@
+eureka:
+  instance:
+    secure-port-enabled: false
+    hostname: third.party.com
+    instance-id: ${eureka.instance.hostname}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://jerry:jerry@127.0.0.1:8888/eureka/
+    fetch-registry: false
+
+server:
+  port: 8080
+spring:
+  application:
+    name: jerry's third party server
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: d704c969087d651257f9
+            client-secret: 615d1607972acabe6733ce4a138b17f648bf0480
