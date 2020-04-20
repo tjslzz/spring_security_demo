@@ -19,7 +19,7 @@ public class UserAuthenticationConverterUtil extends DefaultUserAuthenticationCo
         Map<String, Object> response = new LinkedHashMap();
         response.put("user_name", authentication.getName());
         if (authentication.getAuthorities() != null && !authentication.getAuthorities().isEmpty()) {
-            response.put("authorities", AuthorityUtils.authorityListToSet(authentication.getAuthorities()));
+            response.put("authorities", CommonUtil.convertAuthoritiesToString(authentication.getAuthorities()));
         }
         if (authentication.getDetails() != null) {
             response.put("details", authentication.getDetails());

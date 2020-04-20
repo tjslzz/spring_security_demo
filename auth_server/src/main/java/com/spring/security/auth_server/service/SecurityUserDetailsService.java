@@ -1,6 +1,7 @@
 package com.spring.security.auth_server.service;
 
 import com.spring.common.Constants;
+import com.spring.common.utils.CommonUtil;
 import com.spring.security.auth_server.entity.UserDetail;
 import com.spring.security.auth_server.entity.UserPermission;
 import com.spring.security.auth_server.entity.UserRole;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -41,6 +43,6 @@ public class SecurityUserDetailsService implements UserDetailsService {
                 authorities.add(new SimpleGrantedAuthority(userRole.getRoleName() + Constants.STR_LINE + userPermission.getPermissionName()));
             }
         }
-        return new User(userDetail.getUserName(), userDetail.getPassword(), authorities);
+        return new User(userDetail.getUserName(), userDetail.getPassword(), Collections.singletonList(new SimpleGrantedAuthority(CommonUtil.convertAuthoritiesToString(authorities))));
     }
 }

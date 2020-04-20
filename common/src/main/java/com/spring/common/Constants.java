@@ -2,10 +2,11 @@ package com.spring.common;
 
 public class Constants {
 
+    public static final String SEPARATOR = ",";
+
     private static final String AUTH_PORT = "8001";
     private static final String RESOURCE_PORT = "8002";
     private static final String CLIENT_PORT = "8003";
-
     public static final String STR_LINE = "_";
     public static final String ASSERT_MESSAGE = "非验证类型";
     public static final String INVALID_USER = "用户名/密码无效";

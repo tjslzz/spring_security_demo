@@ -115,7 +115,6 @@ public class RemoteTokenServicesUtil implements ResourceServerTokenServices {
         if (headers.getContentType() == null) {
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         }
-        String xmlData = this.restTemplate.exchange(path, HttpMethod.POST, new HttpEntity(formData, headers), String.class).getBody();
-        return CommonUtil.xmlStringToMap(xmlData);
+        return this.restTemplate.exchange(path, HttpMethod.POST, new HttpEntity(formData, headers), Map.class).getBody();
     }
 }

@@ -3,6 +3,7 @@ package com.spring.security.auth_server.config;
 import com.spring.common.Constants;
 import com.spring.common.utils.PasswordEncoderUtil;
 import com.spring.security.auth_server.service.SecurityUserDetailsService;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -36,8 +37,9 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         Assert.isInstanceOf(UsernamePasswordAuthenticationToken.class, authentication, Constants.ASSERT_MESSAGE);
         String username = authentication.getName();
+        String password = ObjectUtils.isEmpty(authentication.getCredentials()) ? Strings.EMPTY : authentication.getCredentials().toString();
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        if (ObjectUtils.isEmpty(userDetails)) {
+        if (ObjectUtils.isEmpty(userDetails) || !password.equals(userDetails.getPassword())) {
             throw new UsernameNotFoundException(Constants.INVALID_USER);
         }
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
