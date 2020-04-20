@@ -24,6 +24,8 @@
         <module>common</module>
         <module>eureka</module>
         <module>auth_server</module>
+        <module>client_server</module>
+        <module>resource_server</module>
         <module>third_party</module>
     </modules>
 

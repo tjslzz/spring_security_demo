@@ -13,13 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class SecurityUserDetailsService implements UserDetailsService {
@@ -34,16 +31,16 @@ public class SecurityUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         List<UserDetail> userDetails = userDetailRepository.findAllByUserName(userName);
-        if(CollectionUtils.isEmpty(userDetails)){
+        if (CollectionUtils.isEmpty(userDetails)) {
             return null;
         }
         UserDetail userDetail = userDetails.get(0);
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (UserRole userRole : userDetail.getUserRoles()) {
             for (UserPermission userPermission : userRole.getUserPermissions()) {
-                authorities.add(new SimpleGrantedAuthority(userRole.getRoleName()+ Constants.STR_LINE + userPermission.getPermissionName()));
+                authorities.add(new SimpleGrantedAuthority(userRole.getRoleName() + Constants.STR_LINE + userPermission.getPermissionName()));
             }
         }
-        return new User(userDetail.getUserName(),userDetail.getPassword(),authorities);
+        return new User(userDetail.getUserName(), userDetail.getPassword(), authorities);
     }
 }

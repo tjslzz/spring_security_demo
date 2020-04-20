@@ -2,14 +2,6 @@ package com.spring.common;
 
 public class Constants {
 
-    /*
-    !import
-    please update your hosts file in C:/windows/System32\drivers\etc
-    127.0.0.1 auth.server.com
-    127.0.0.1 client.server.com
-    127.0.0.1 resource.server.com
-    127.0.0.1 third.party.com
-     */
     private static final String AUTH_PORT = "8001";
     private static final String RESOURCE_PORT = "8002";
     private static final String CLIENT_PORT = "8003";
