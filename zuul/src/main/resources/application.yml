@@ -1,0 +1,32 @@
+eureka:
+  instance:
+    secure-port-enabled: false
+    hostname: resource.server.com
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://jerry:jerry@127.0.0.1:8888/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+server:
+  port: 8000
+
+spring:
+  application:
+    name: jerry's zuul server
+
+zuul:
+  #  ?????????(???????????????)
+  ignored-services: "*"
+  #  ????????????????????
+  prefix: /lije9
+  routes:
+    #   ??????????(con. ??????)
+    con.serviceId: eureka
+    #    ????????
+    con.path: /lije9/**
