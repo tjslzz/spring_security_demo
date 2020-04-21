@@ -1,7 +1,7 @@
 eureka:
   instance:
     secure-port-enabled: false
-    hostname: resource.server.com
+    hostname: zull.server.com
     instance-id: ${eureka.instance.hostname}:${server.port}
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
