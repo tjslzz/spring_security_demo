@@ -1,5 +1,6 @@
 package com.spring.security.client_server.config;
 
+import com.spring.common.Constants;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .oauth2Login()
+                .defaultSuccessUrl(Constants.CLIENT_LOGIN_SUCCESS_URL, true)
                 .and()
                 .authorizeRequests().antMatchers("/login/oauth2/**").permitAll()
                 .and()

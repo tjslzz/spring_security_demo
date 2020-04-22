@@ -36,7 +36,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
         if (CollectionUtils.isEmpty(userDetails)) {
             return null;
         }
-        UserDetail userDetail = userDetails.get(0);
+        UserDetail userDetail = userDetails.stream().findFirst().orElse(new UserDetail());
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (UserRole userRole : userDetail.getUserRoles()) {
             for (UserPermission userPermission : userRole.getUserPermissions()) {

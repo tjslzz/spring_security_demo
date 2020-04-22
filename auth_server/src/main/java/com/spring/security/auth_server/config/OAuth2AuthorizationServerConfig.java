@@ -24,6 +24,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @Order(3)
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+
     @Autowired
     private TokenStore tokenStore;
 
@@ -44,7 +45,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .resourceIds(Constants.RESOURCE_ID)
                 .redirectUris(Constants.REDIRECT_URL)
                 .scopes(Constants.SCOPES)
-                .accessTokenValiditySeconds(3600 * 12)
+                .accessTokenValiditySeconds(Constants.TOKEN_VALIDITY_SECONDS)
                 .authorizedGrantTypes(AuthorizationGrantType.REFRESH_TOKEN.getValue(), AuthorizationGrantType.AUTHORIZATION_CODE.getValue(), AuthorizationGrantType.IMPLICIT.getValue(), AuthorizationGrantType.CLIENT_CREDENTIALS.getValue(), AuthorizationGrantType.PASSWORD.getValue());
     }
 

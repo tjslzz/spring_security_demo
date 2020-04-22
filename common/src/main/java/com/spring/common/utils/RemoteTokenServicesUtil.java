@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
+//todo use xsd analyze the xml response body
 public class RemoteTokenServicesUtil implements ResourceServerTokenServices {
     protected final Log logger = LogFactory.getLog(this.getClass());
     private RestOperations restTemplate = new RestTemplate();
