@@ -30,8 +30,8 @@ public class Constants {
     public static final String TOKEN_URL = "http://auth.server.com:" + AUTH_PORT + "/oauth/token";
     public static final String CHECK_TOKEN_URL = "http://auth.server.com:" + AUTH_PORT + "/oauth/check_token";
     public static final String USER_URL = "http://resource.server.com:" + RESOURCE_PORT + "/oauth/user";
-    public static final String CLIENT_LOGIN_SUCCESS_URL = "http://127.0.0.1:8080/hello";
-    public static final String CLIENT_LOGIN_FAILED_URL = "http://127.0.0.1:8080/";
+    public static final String CLIENT_LOGIN_SUCCESS_URL = "http://client.server.com:8080/hello";
+    public static final String CLIENT_LOGIN_FAILED_URL = "http://client.server.com:8080/hello";
 
     private Constants() {
     }
